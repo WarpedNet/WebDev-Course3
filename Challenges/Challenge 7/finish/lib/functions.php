@@ -15,15 +15,11 @@ function get_connection()
     return $pdo;
 }
 
-function get_pets($limit = null)
+function get_pets()
 {
-    $pdo = new PDO(
-        $config['database_dsn'],
-        $config['database_user'],
-        $config['database_pass']
-    );
+    $pdo = new PDO('mysql:dbname=air_pup;host=localhost', 'root', null);
     $result = $pdo->query('SELECT * FROM pet');
-    $rows = $result->fetchAll();
+    $pets = $result->fetchAll();
 
     return $pets;
 }
